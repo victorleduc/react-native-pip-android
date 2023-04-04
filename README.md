@@ -9,7 +9,7 @@ This package only works on android.
 
 ## Demo
 
-<a href="https://github.com/adkaushik/react-native-pip-android"><img src="https://user-images.githubusercontent.com/26771716/130575748-d763dc3c-ff73-4727-8019-28eb210c88fd.gif" width="360"></a>
+<a href="https://github.com/victorleduc/react-native-pip-android"><img src="https://user-images.githubusercontent.com/26771716/130575748-d763dc3c-ff73-4727-8019-28eb210c88fd.gif" width="360"></a>
 
 ## Installation
 
