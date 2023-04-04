@@ -1,5 +1,5 @@
 {
-  "name": "react-native-pip-android",
+  "name": "react-native-pip-android-no-native-needed",
   "version": "1.0.1",
   "description": "Add picture in picture support to react native android application",
   "main": "src/index.tsx",
@@ -144,7 +144,12 @@
     "output": "lib",
     "targets": [
       "typescript",
-      ["aar", { "reverseJetify": true }]
+      [
+        "aar",
+        {
+          "reverseJetify": true
+        }
+      ]
     ]
   }
 }
