@@ -37,33 +37,21 @@ Add the following attrs in `/android/app/src/main/AndroidManifest.xml` file
         ...
 ```
 
-If you don't have to recieve updates when the pip mode is entered or exited,
-you are good to go. In order to subscribe to the changes in the pip mode, add the following code to `MainActivity.java`.
-
-Add this import to the activity
-
-```java
-...
-import com.reactnativepipandroid.PipAndroidModule;
-
-
-public class MainActivity extends ReactActivity {
-
-...
-
-@Override
-  public void onPictureInPictureModeChanged (boolean isInPictureInPictureMode, Configuration newConfig) {
-    PipAndroidModule.pipModeChanged(isInPictureInPictureMode);
-  }
-```
-
-
 ## Usage
 
 ```js
+import { NativeModules } from "react-native";
 import PipHandler, { usePipModeListener } from 'react-native-pip-android';
 
 export default function App() {
+
+  const PipAndroidModule = NativeModules.PipAndroid;
+
+  useEffect(() => {
+    // Register for Android Lifecycle Event Observer
+    PipAndroidModule?.registerLifecycleEventObserver();
+  }, []);
+
   // Use this boolean to show / hide ui when pip mode changes
   const inPipMode = usePipModeListener();
 
