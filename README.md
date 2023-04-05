@@ -3,7 +3,7 @@
 Add picture in picture support to react native android application.
 Also has a listener to notify the pip state change.
 
-## Note 
+## Note
 
 This package only works on android.
 
@@ -14,14 +14,15 @@ This package only works on android.
 ## Installation
 
 Using npm
+
 ```sh
-npm install react-native-pip-android
+npm install react-native-pip-android-no-native-needed
 ```
 
 or using yarn
 
 ```sh
-yarn add react-native-pip-android
+yarn add react-native-pip-android-no-native-needed
 ```
 
 ## Setup
@@ -40,11 +41,10 @@ Add the following attrs in `/android/app/src/main/AndroidManifest.xml` file
 ## Usage
 
 ```js
-import { NativeModules } from "react-native";
+import { NativeModules } from 'react-native';
 import PipHandler, { usePipModeListener } from 'react-native-pip-android';
 
 export default function App() {
-
   const PipAndroidModule = NativeModules.PipAndroid;
 
   useEffect(() => {
@@ -70,14 +70,13 @@ export default function App() {
       </Text>
       <TouchableOpacity
         onPress={() => PipHandler.enterPipMode(300, 214)}
-        style={styles.box}>
+        style={styles.box}
+      >
         <Text>Click to Enter Pip Mode</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
-
 ```
 
 ## Contributing
