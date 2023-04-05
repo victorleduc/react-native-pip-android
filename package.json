@@ -145,7 +145,12 @@
     "targets": [
       "typescript",
       [
-        "aar",
+        [
+          "aar",
+          {
+            "androidBundleName": "android-release.aar"
+          }
+        ],
         {
           "reverseJetify": true
         }
