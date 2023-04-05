@@ -39,13 +39,13 @@
     "android pip",
     "react native picture in picture"
   ],
-  "repository": "https://github.com/victorleduc/react-native-pip-android",
+  "repository": "https://github.com/victorleduc/react-native-pip-android-no-native-needed",
   "author": " Kaushik Annangi <victor.leduc.perso@gmail.com> (https://github.com/victorleduc)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/victorleduc/react-native-pip-android/issues"
+    "url": "https://github.com/victorleduc/react-native-pip-android-no-native-needed/issues"
   },
-  "homepage": "https://github.com/victorleduc/react-native-pip-android#readme",
+  "homepage": "https://github.com/victorleduc/react-native-pip-android-no-native-needed#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
