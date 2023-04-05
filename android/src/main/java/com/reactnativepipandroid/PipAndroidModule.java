@@ -2,6 +2,8 @@ package com.reactnativepipandroid;
 
 import android.app.PictureInPictureParams;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.util.Rational;
 
@@ -32,7 +34,6 @@ public class PipAndroidModule extends ReactContextBaseJavaModule implements Life
 
   public PipAndroidModule(ReactApplicationContext reactContext) {
     super(reactContext);
-    Log.d("PIP", "Got the context");
     this.reactApplicationContext = reactContext;
   }
 
@@ -72,8 +73,6 @@ public class PipAndroidModule extends ReactContextBaseJavaModule implements Life
         AppCompatActivity activity = (AppCompatActivity) reactApplicationContext.getCurrentActivity();
         if (activity != null) {
           activity.getLifecycle().addObserver(PipAndroidModule.this);
-        } else {
-          Log.d(PipAndroidModule.this.getName(), "App activity is null.");
         }
       }
     });
@@ -82,23 +81,21 @@ public class PipAndroidModule extends ReactContextBaseJavaModule implements Life
 
   @Override
   public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-    Log.d("PIPdebug", "onStateChanged" + event.name());
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       AppCompatActivity activity = (AppCompatActivity) source;
-      boolean isInPiPMode = activity.isInPictureInPictureMode();
-      // When closing the PiP, onStop is called but isInPictureInPictureMode() still returns true,
-      // better to do this custom condition than to call again isInPictureInPictureMode few ms later
-      if (event.name() == "ON_STOP") {
-        isInPiPMode = false;
-      }
-      Log.d("PIPdebug", "isInPiPMode" + isInPiPMode);
 
-      // Check for changes on pip mode.
-      if (this.isInPiPMode != isInPiPMode) {
-        this.isInPiPMode = isInPiPMode;
-        pipModeChanged(isInPiPMode);
-      }
+      final Handler handler = new Handler(Looper.getMainLooper());
+      handler.postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          boolean isInPiPMode = activity.isInPictureInPictureMode();
+
+          if (PipAndroidModule.this.isInPiPMode != isInPiPMode) {
+            PipAndroidModule.this.isInPiPMode = isInPiPMode;
+            pipModeChanged(isInPiPMode);
+          }
+        }
+      }, 100);
     }
   }
 }
